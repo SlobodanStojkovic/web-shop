@@ -1,29 +1,43 @@
 import { useEffect, useState } from "react";
 import fetchProducts from "../../services/fetchProducts";
+import SingleProduct from "../SingleProduct/SingleProduct";
 import "./Main.css";
 
 const Main = () => {
     const [products, setProducts] = useState([]);
+    const [productsWithAmount, setProductsWithAmount] = useState([]);
+
 
     useEffect(() => {
         fetchProducts().then((products) => {
             setProducts(products);
         });
     }, []);
-    console.log(products);
+
+    useEffect(() => {
+        let productAddingAmountProperty = products.map((product) => {
+            return {
+                ...product,
+                amount: 1,
+            };
+        });
+        setProductsWithAmount(productAddingAmountProperty);
+    }, [products]);
+
+    console.log(productsWithAmount);
 
     return (
         <div className="products">
-            {products.map((product) => {
-                return (
-                    <div className="singleProduct" key={product.id}>
-                        <p>{product.title}</p>
-                        <img src={product.image}></img>
-                        <p>{product.price}</p>
-                        <p>{product.rating.rate}</p>
-                    </div>
-                );
-            })}
+            {productsWithAmount.length > 0 &&
+                productsWithAmount.map((product) => {
+                    return (
+                        <SingleProduct
+                            product={product}
+                            key={product.id}
+                            productsWithAmount={productsWithAmount}
+                        />
+                    );
+                })}
         </div>
     );
 };

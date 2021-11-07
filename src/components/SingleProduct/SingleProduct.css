@@ -1,0 +1,39 @@
+.productTitle {
+    width: 90%;
+    margin: 5% auto;
+}
+
+.imageDiv {
+    height: 40%;
+    width: 100%;
+}
+
+.productImg {
+    max-width: 80%;
+    margin: 5%;
+    vertical-align: middle;
+    max-height: 100%;
+}
+
+.singleProduct {
+    height: 500px;
+    width: 25%;
+    border: 1px solid gray;
+    margin: 2%;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    vertical-align: top; /* For inline-block elements the default value of the vertical-align property is baseline. If we change the value to top, it will behave as expected and all singleProducts will be lined up */
+}
+
+input {
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+}
+
+.addToCartButton {
+    padding: 3%;
+    background-color: rgb(35, 211, 35);
+    border-radius: 5%;
+}
