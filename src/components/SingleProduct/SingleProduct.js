@@ -1,26 +1,34 @@
 import { useState } from "react/cjs/react.development";
 import "./SingleProduct.css";
 
-const SingleProduct = ({ product, productsWithAmount }) => {
+const SingleProduct = ({ products, product }) => {
     const [productAmount, setProductAmount] = useState(1);
-    const [shoppingCart, setShoppingCart] = useState([]);
+    const [shoppingCartItem, setShoppingCartItem] = useState({});
 
-    const updateProductAmount = () => {
-        productsWithAmount.forEach((element) => {
+
+    const addToCart = () => {
+        let cartItemsForLocalStorage =
+            JSON.parse(localStorage.getItem("webShopSloba")) || [];
+
+        products.forEach((element) => {
             if (element.id === product.id) {
                 let buyingArticle = {
                     ...element,
                     amount: productAmount,
                 };
+                setShoppingCartItem(buyingArticle);
 
-                let shoppingItems = shoppingCart.map((itemToBuy) => {
-                    console.log(buyingArticle)
-                    return [itemToBuy, buyingArticle];
+                cartItemsForLocalStorage.push({
+                   ...product,
+                    amount: productAmount,
                 });
-                setShoppingCart(shoppingItems);
+
+                localStorage.setItem(
+                    "webShopSloba",
+                    JSON.stringify(cartItemsForLocalStorage)
+                );
             }
         });
-        console.log(shoppingCart);
     };
 
     return (
@@ -32,18 +40,20 @@ const SingleProduct = ({ product, productsWithAmount }) => {
                     alt={product.title}
                 ></img>
             </div>
+
             <p className="productTitle">{product.title}</p>
             <input
                 type="number"
-                placeholder="1"
-                onChange={(event) => setProductAmount(event.target.value)}
+                defaultValue="1"
+                onChange={(event) => setProductAmount(() => event.target.value)}
                 min="0"
                 max="10"
             ></input>
 
             <p>Price: ${(product.price * productAmount).toFixed(2)}</p>
             <p>Rating: {product.rating.rate}</p>
-            <button className="addToCartButton" onClick={updateProductAmount}>
+
+            <button className="addToCartButton" onClick={addToCart}>
                 Add to cart
             </button>
         </div>

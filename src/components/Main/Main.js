@@ -5,36 +5,52 @@ import "./Main.css";
 
 const Main = () => {
     const [products, setProducts] = useState([]);
-    const [productsWithAmount, setProductsWithAmount] = useState([]);
-
 
     useEffect(() => {
         fetchProducts().then((products) => {
             setProducts(products);
         });
     }, []);
-
+/* 
     useEffect(() => {
+        let amountToUpdate = JSON.parse(localStorage.getItem("webShopSloba"));
+
         let productAddingAmountProperty = products.map((product) => {
-            return {
-                ...product,
-                amount: 1,
-            };
+            if (amountToUpdate !== null) {
+                amountToUpdate.forEach((element) => {
+                    
+                    if (element.productId === product.id) {
+                        return {
+                            ...product,
+                            amount: element.productAmount,
+                        };
+                    } else
+                        return {
+                            ...product,
+                            amount: 0,
+                        };
+                });
+            } else {
+                return {
+                    ...product,
+                    amount: 0,
+                };
+            }
         });
         setProductsWithAmount(productAddingAmountProperty);
-    }, [products]);
+    }, [products, ]); */
 
-    console.log(productsWithAmount);
+
 
     return (
         <div className="products">
-            {productsWithAmount.length > 0 &&
-                productsWithAmount.map((product) => {
+            {products.length > 0 &&
+                products.map((product) => {
                     return (
                         <SingleProduct
+                        products={products}
                             product={product}
                             key={product.id}
-                            productsWithAmount={productsWithAmount}
                         />
                     );
                 })}

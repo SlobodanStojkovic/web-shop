@@ -1,6 +1,7 @@
 .productTitle {
     width: 90%;
     margin: 5% auto;
+    margin-top: 10%;
 }
 
 .imageDiv {
@@ -16,14 +17,18 @@
 }
 
 .singleProduct {
-    height: 500px;
+    height: 450px;
     width: 25%;
-    border: 1px solid gray;
+    border: 1px solid gainsboro;
     margin: 2%;
     display: inline-block;
     text-align: center;
     align-items: center;
-    vertical-align: top; /* For inline-block elements the default value of the vertical-align property is baseline. If we change the value to top, it will behave as expected and all singleProducts will be lined up */
+    vertical-align: top;
+    /* For inline-block elements the default value of the vertical-align property is baseline. If we change the value to top, it will behave as expected and all singleProducts will be lined up */
+    position: relative;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.35);
+    border-radius: 3%;
 }
 
 input {
@@ -36,4 +41,7 @@ input {
     padding: 3%;
     background-color: rgb(35, 211, 35);
     border-radius: 5%;
+    position: absolute;
+    bottom: 3%;
+    left: 36%;
 }

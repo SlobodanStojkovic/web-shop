@@ -5,15 +5,15 @@ header {
 
 .homeLink {
     margin-left: 2%;
-    text-align: start;
-    align-items: baseline;
-    display: block;
+    display: inline-block;
     text-decoration: none;
     font-weight: bolder;
     font-size: 2rem;
+    position: absolute;
+    left: 3%;
 }
 
-.shoppingCartImage{
+.shoppingCartImage {
     width: 20px;
 }
 
@@ -24,3 +24,25 @@ header {
     right: 3%;
     top: 1.5rem;
 }
+
+ul {
+    list-style-type: none;
+    display: inline-block;
+}
+
+ul li {
+    display: block;
+    float: left;
+    padding-left: 3rem;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+li a {
+    text-decoration: none;
+}
+
+a:visited{
+    color:blue;
+  }
