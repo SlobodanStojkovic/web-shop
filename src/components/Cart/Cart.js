@@ -1,17 +1,37 @@
+import { useEffect, useState } from "react/cjs/react.development";
 import "./Cart.css";
 
-const Cart = ({ setShowCart }) => {
-    let productsInCart = JSON.parse(localStorage.getItem("webShopSloba"));
-    console.log(productsInCart);
+const Cart = ({
+    showCart,
+    cartShowHandler,
+    productsInCart,
+    setProductsInCart,
+}) => {
+    useEffect(() => {
+        setProductsInCart(() =>
+            JSON.parse(localStorage.getItem("webShopSloba"))
+        );
+    }, [showCart]);
 
-    return setShowCart && productsInCart !== undefined ? (
+    const clearCart = () => {
+        localStorage.removeItem("webShopSloba");
+        setProductsInCart([]);
+    };
+
+    return showCart && productsInCart !== null ? (
         <div className="cartContainer">
+            <button className="closeCartButton" onClick={cartShowHandler}>
+                X
+            </button>
             <div className="productsInCart">
                 {productsInCart &&
-                    productsInCart.map((product) => {
+                    productsInCart.map((product, index) => {
                         return (
-                            <div className="singleCartProduct">
-                                <img src={product.image}></img>
+                            <div
+                                className="singleCartProduct"
+                                key={product.id + 100 * index}
+                            >
+                                <img src={product.image} alt="product"></img>
                                 <p className="productTitle">{product.title}</p>
                                 <input
                                     type="number"
@@ -31,6 +51,10 @@ const Cart = ({ setShowCart }) => {
                         );
                     })}
             </div>
+
+            <button className="clearCartButton" onClick={clearCart}>
+                Clear Cart
+            </button>
         </div>
     ) : null;
 };

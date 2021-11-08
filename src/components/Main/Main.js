@@ -11,7 +11,7 @@ const Main = () => {
             setProducts(products);
         });
     }, []);
-/* 
+    /* 
     useEffect(() => {
         let amountToUpdate = JSON.parse(localStorage.getItem("webShopSloba"));
 
@@ -40,15 +40,13 @@ const Main = () => {
         setProductsWithAmount(productAddingAmountProperty);
     }, [products, ]); */
 
-
-
     return (
         <div className="products">
             {products.length > 0 &&
                 products.map((product) => {
                     return (
                         <SingleProduct
-                        products={products}
+                            products={products}
                             product={product}
                             key={product.id}
                         />

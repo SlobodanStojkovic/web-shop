@@ -1,5 +1,47 @@
 .cartContainer {
-    width: 80%;
-    height: 80%;
+    min-width: 80vw;
+    min-height: 80vh;
+/*     width: 80vw;
+    height: 80vh; */
+    margin: 0 auto;
     background-color: gray;
+}
+
+.singleCartProduct {
+    height: 450px;
+    background-color: yellowgreen;
+    width: 25%;
+    border: 1px solid gainsboro;
+    margin: 2%;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    vertical-align: top;
+    /* For inline-block elements the default value of the vertical-align property is baseline. If we change the value to top, it will behave as expected and all singleProducts will be lined up */
+    position: relative;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.35);
+    border-radius: 3%;
+}
+
+
+
+.singleCartProduct img {
+    max-width: 80%;
+    margin: 5%;
+    vertical-align: middle;
+    max-height: 50%;
+    border-radius: 5%;
+}
+
+.singleCartProduct input {
+    text-align: center;
+}
+
+.closeCartButton {
+    float: right;
+    margin: 0.3rem;
+}
+
+.clearCartButton {
+    margin: 1rem;
 }
