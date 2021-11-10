@@ -1,0 +1,8 @@
+.searchInput {
+    margin: 1rem auto;
+    padding: 0.5rem;
+    border-radius: 2%;
+    text-align: center;
+    align-items: center;
+    width: 40%;
+}

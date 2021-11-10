@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 import "./SingleProduct.css";
+
 
 const SingleProduct = ({ products, product }) => {
     const [productAmount, setProductAmount] = useState(1);
     const [shoppingCartItem, setShoppingCartItem] = useState({});
-
 
     const addToCart = () => {
         let cartItemsForLocalStorage =
@@ -19,7 +20,7 @@ const SingleProduct = ({ products, product }) => {
                 setShoppingCartItem(buyingArticle);
 
                 cartItemsForLocalStorage.push({
-                   ...product,
+                    ...product,
                     amount: productAmount,
                 });
 
@@ -32,31 +33,35 @@ const SingleProduct = ({ products, product }) => {
     };
 
     return (
-        <div className="singleProduct">
-            <div className="imageDiv">
-                <img
-                    className="productImg"
-                    src={product.image}
-                    alt={product.title}
-                ></img>
+        <Link to={`/single-product/${product.id}`}>
+            <div className="singleProduct">
+                <div className="imageDiv">
+                    <img
+                        className="productImg"
+                        src={product.image}
+                        alt={product.title}
+                    ></img>
+                </div>
+
+                <p className="productTitle">{product.title}</p>
+                <input
+                    type="number"
+                    defaultValue="1"
+                    onChange={(event) =>
+                        setProductAmount(() => event.target.value)
+                    }
+                    min="0"
+                    max="10"
+                ></input>
+
+                <p>Price: ${(product.price * productAmount).toFixed(2)}</p>
+                <p>Rating: {product.rating.rate}</p>
+
+                <button className="addToCartButton" onClick={addToCart}>
+                    Add to cart
+                </button>
             </div>
-
-            <p className="productTitle">{product.title}</p>
-            <input
-                type="number"
-                defaultValue="1"
-                onChange={(event) => setProductAmount(() => event.target.value)}
-                min="0"
-                max="10"
-            ></input>
-
-            <p>Price: ${(product.price * productAmount).toFixed(2)}</p>
-            <p>Rating: {product.rating.rate}</p>
-
-            <button className="addToCartButton" onClick={addToCart}>
-                Add to cart
-            </button>
-        </div>
+        </Link>
     );
 };
 

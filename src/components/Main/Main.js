@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import fetchProducts from "../../services/fetchProducts";
+import Search from "../Search/Search";
 import SingleProduct from "../SingleProduct/SingleProduct";
+
 import "./Main.css";
 
 const Main = () => {
     const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
     useEffect(() => {
         fetchProducts().then((products) => {
             setProducts(products);
+            setFilteredProducts(products);
         });
     }, []);
+
     /* 
     useEffect(() => {
         let amountToUpdate = JSON.parse(localStorage.getItem("webShopSloba"));
@@ -41,18 +46,24 @@ const Main = () => {
     }, [products, ]); */
 
     return (
-        <div className="products">
-            {products.length > 0 &&
-                products.map((product) => {
-                    return (
-                        <SingleProduct
-                            products={products}
-                            product={product}
-                            key={product.id}
-                        />
-                    );
-                })}
-        </div>
+        <>
+            <Search
+                products={products}
+                setFilteredProducts={setFilteredProducts}
+            />
+            <div className="products">
+                {/* filteredProducts.length > 0 && */
+                    filteredProducts.map((product) => {
+                        return (
+                            <SingleProduct
+                                products={products}
+                                product={product}
+                                key={product.id}
+                            />
+                        );
+                    })}
+            </div>
+        </>
     );
 };
 
