@@ -7,6 +7,19 @@ const Cart = ({
     productsInCart,
     setProductsInCart,
 }) => {
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    const calculateTotal = () => {
+        let total = 0;
+        productsInCart.forEach((element) => {
+            console.log(productsInCart)
+            if (element.amount !== 0) {
+                total += element.price * element.amount;
+            }
+        });
+        return setTotalPrice(total);
+    };
+
     useEffect(() => {
         setProductsInCart(() =>
             JSON.parse(localStorage.getItem("webShopSloba"))
@@ -20,6 +33,7 @@ const Cart = ({
 
     return showCart && productsInCart !== null ? (
         <div className="cartContainer">
+            <h1>My cart</h1>
             <button className="closeCartButton" onClick={cartShowHandler}>
                 X
             </button>
@@ -51,7 +65,8 @@ const Cart = ({
                         );
                     })}
             </div>
-
+            <button>Calculate total</button>
+            <h2 onClick={calculateTotal}>Total: {totalPrice} </h2>
             <button className="clearCartButton" onClick={clearCart}>
                 Clear Cart
             </button>

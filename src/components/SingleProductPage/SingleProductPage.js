@@ -4,7 +4,7 @@ import "./SingleProductPage.css";
 const SingleProductPage = () => {
     return (
         <div className="singleProduct">
-            <div className="imageDiv">
+            {/* <div className="imageDiv">
                 <img
                     className="productImg"
                     src={product.image}
@@ -26,7 +26,7 @@ const SingleProductPage = () => {
 
             <button className="addToCartButton" onClick={addToCart}>
                 Add to cart
-            </button>
+            </button> */}
         </div>
     );
 };

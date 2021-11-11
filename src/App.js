@@ -10,12 +10,12 @@ function App() {
         <div className="App">
             <Header />
             <Routes>
-                <Route path="/home" component={Main} />
-                <Route
+                <Route path="/home" element={<Main />} />
+                {/*                 <Route
                     path="/single-product/:id"
-                    component={() => <SingleProductPage />}
-                />
-                <Navigate from="/" to="/home" />
+                    element={() => <SingleProductPage />}
+                /> */}
+                <Route path="/" element={<Navigate to="home" />} />
             </Routes>
             <Footer />
         </div>

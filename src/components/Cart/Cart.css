@@ -8,7 +8,7 @@
 }
 
 .singleCartProduct {
-    height: 450px;
+    height: 500px;
     background-color: yellowgreen;
     width: 25%;
     border: 1px solid gainsboro;
@@ -45,3 +45,4 @@
 .clearCartButton {
     margin: 1rem;
 }
+
