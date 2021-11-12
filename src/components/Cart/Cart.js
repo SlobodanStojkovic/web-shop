@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import "./Cart.css";
 
 const Cart = ({
@@ -12,13 +12,25 @@ const Cart = ({
     const calculateTotal = () => {
         let total = 0;
         productsInCart.forEach((element) => {
-            console.log(productsInCart)
             if (element.amount !== 0) {
                 total += element.price * element.amount;
             }
         });
         return setTotalPrice(total);
     };
+
+    const deleteCartProduct = (id) => {
+        productsInCart.forEach((product) => {
+            console.log(id);
+            if (id === product.id) {
+                product.removeItem();
+            }
+        });
+    };
+
+    useEffect(() => {
+        calculateTotal();
+    }, [showCart]);
 
     useEffect(() => {
         setProductsInCart(() =>
@@ -33,10 +45,11 @@ const Cart = ({
 
     return showCart && productsInCart !== null ? (
         <div className="cartContainer">
-            <h1>My cart</h1>
             <button className="closeCartButton" onClick={cartShowHandler}>
                 X
             </button>
+            <h1>My cart</h1>
+
             <div className="productsInCart">
                 {productsInCart &&
                     productsInCart.map((product, index) => {
@@ -45,11 +58,21 @@ const Cart = ({
                                 className="singleCartProduct"
                                 key={product.id + 100 * index}
                             >
+                                <button
+                                    className="deleteCartProduct"
+                                    onClick={() => deleteCartProduct()}
+                                >
+                                    X
+                                </button>
                                 <img src={product.image} alt="product"></img>
                                 <p className="productTitle">{product.title}</p>
                                 <input
                                     type="number"
                                     defaultValue={product.amount}
+                                    onChange={(event) => {
+                                        product.amount = event.target.value;
+                                        calculateTotal();
+                                    }}
                                     min="0"
                                     max="10"
                                 ></input>
@@ -65,8 +88,8 @@ const Cart = ({
                         );
                     })}
             </div>
-            <button>Calculate total</button>
-            <h2 onClick={calculateTotal}>Total: {totalPrice} </h2>
+            <h2>Total: ${totalPrice.toFixed(2)} </h2>
+            <button className="calculateTotalInCartButton">Send order</button>
             <button className="clearCartButton" onClick={clearCart}>
                 Clear Cart
             </button>

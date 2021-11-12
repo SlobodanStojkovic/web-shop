@@ -44,5 +44,15 @@
 
 .clearCartButton {
     margin: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    background-color:  orange;
+}
+
+.calculateTotalInCartButton {
+    margin: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    background-color:  rgb(35, 211, 35);
 }
 

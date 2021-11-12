@@ -11,10 +11,10 @@ function App() {
             <Header />
             <Routes>
                 <Route path="/home" element={<Main />} />
-                {/*                 <Route
+                <Route
                     path="/single-product/:id"
-                    element={() => <SingleProductPage />}
-                /> */}
+                    element={<SingleProductPage />}
+                />
                 <Route path="/" element={<Navigate to="home" />} />
             </Routes>
             <Footer />

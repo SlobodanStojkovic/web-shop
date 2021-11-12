@@ -1,18 +1,40 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import fetchProducts from "../../services/fetchProducts";
+import fetchSingleProduct from "../../services/fetchSingleProduct";
+import { useParams } from "react-router-dom";
 import "./SingleProductPage.css";
 
-const SingleProductPage = () => {
+const SingleProductPage = (props) => {
+    const [productAmount, setProductAmount] = useState("");
+    const [singleProductToShow, setSingleProductToShow] = useState([]);
+    const [singleReport, setSingleReport] = useState([]);
+
+    const id = useParams();
+
+    useEffect(() => {
+        fetchSingleProduct(id).then((productPage) => {
+            console.log(id);
+            setSingleProductToShow(productPage);
+            fetchProducts.then((products) => {
+                const filtProd = products.filter(
+                    (product) => product.id === productPage.id
+                );
+                setSingleReport(filtProd);
+            });
+        });
+    }, []);
+
     return (
         <div className="singleProduct">
-            {/* <div className="imageDiv">
+            <div className="imageDiv">
                 <img
                     className="productImg"
-                    src={product.image}
-                    alt={product.title}
+                    src={singleReport.image}
+                    alt={singleReport.title}
                 ></img>
             </div>
 
-            <p className="productTitle">{product.title}</p>
+            <p className="productTitle">{singleReport.title}</p>
             <input
                 type="number"
                 defaultValue="1"
@@ -21,12 +43,12 @@ const SingleProductPage = () => {
                 max="10"
             ></input>
 
-            <p>Price: ${(product.price * productAmount).toFixed(2)}</p>
-            <p>Rating: {product.rating.rate}</p>
+            <p>Price: ${(singleReport.price * productAmount).toFixed(2)}</p>
+            <p>Rating: {singleReport.rating.rate}</p>
 
-            <button className="addToCartButton" onClick={addToCart}>
+            <button className="addToCartButton" /* onClick={addToCart} */>
                 Add to cart
-            </button> */}
+            </button>
         </div>
     );
 };

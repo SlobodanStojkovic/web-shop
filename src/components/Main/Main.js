@@ -8,6 +8,7 @@ import "./Main.css";
 const Main = () => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [addedNotification, setAddedNotification] = useState(false);
 
     useEffect(() => {
         fetchProducts().then((products) => {
@@ -15,6 +16,13 @@ const Main = () => {
             setFilteredProducts(products);
         });
     }, []);
+
+    const addedNotificationTimer = () => {
+        setAddedNotification(true);
+        setTimeout(() => {
+            setAddedNotification(false);
+        }, 5000);
+    };
 
     /* 
     useEffect(() => {
@@ -52,16 +60,24 @@ const Main = () => {
                 setFilteredProducts={setFilteredProducts}
             />
             <div className="products">
-                {/* filteredProducts.length > 0 && */
+                {addedNotification && (
+                    <p className="addedToCartNotification">
+                        The product has been added to the cart.
+                    </p>
+                )}
+                {
+                    /* filteredProducts.length > 0 && */
                     filteredProducts.map((product) => {
                         return (
                             <SingleProduct
                                 products={products}
                                 product={product}
                                 key={product.id}
+                                setAddedNotification={addedNotificationTimer}
                             />
                         );
-                    })}
+                    })
+                }
             </div>
         </>
     );

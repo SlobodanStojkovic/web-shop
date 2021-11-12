@@ -44,4 +44,10 @@ input {
     position: absolute;
     bottom: 3%;
     left: 36%;
+    z-index: 998;
+}
+
+.addToCartButton:active {
+    padding: 0.5rem;
+    background-color: aqua;
 }
