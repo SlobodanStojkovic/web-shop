@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <>
             <header>
-                <a className="homeLink" href="./">
+                <a className="homeLink" href="../home">
                     Home
                 </a>
                 <ul>

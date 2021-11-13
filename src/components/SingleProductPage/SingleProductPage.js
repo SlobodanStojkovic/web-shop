@@ -1,41 +1,42 @@
 import { useEffect, useState } from "react";
-import fetchProducts from "../../services/fetchProducts";
 import fetchSingleProduct from "../../services/fetchSingleProduct";
 import { useParams } from "react-router-dom";
 import "./SingleProductPage.css";
 
-const SingleProductPage = (props) => {
+const SingleProductPage = () => {
     const [productAmount, setProductAmount] = useState("");
-    const [singleProductToShow, setSingleProductToShow] = useState([]);
     const [singleReport, setSingleReport] = useState([]);
 
     const id = useParams();
+    console.log(singleReport);
 
     useEffect(() => {
-        fetchSingleProduct(id).then((productPage) => {
-            console.log(id);
-            setSingleProductToShow(productPage);
-            fetchProducts.then((products) => {
-                const filtProd = products.filter(
-                    (product) => product.id === productPage.id
-                );
-                setSingleReport(filtProd);
-            });
+        fetchSingleProduct(id.id).then((productToShow) => {
+            let product = {
+                ...productToShow,
+                amount: 1,
+            };
+            setSingleReport(product);
         });
-    }, []);
+    }, [id]);
+
+    useEffect(() => {
+        singleReport.amount = productAmount;
+    }, [productAmount]);
 
     return (
-        <div className="singleProduct">
+        <div className="singleProductPage">
             <div className="imageDiv">
+                <p className="productTitleSinglePage">{singleReport.title}</p>
                 <img
-                    className="productImg"
+                    className="productImgSinglePage"
                     src={singleReport.image}
                     alt={singleReport.title}
                 ></img>
             </div>
-
-            <p className="productTitle">{singleReport.title}</p>
+            <p className="itemDescription">{singleReport.description}</p>
             <input
+                className="singleProductInput"
                 type="number"
                 defaultValue="1"
                 onChange={(event) => setProductAmount(() => event.target.value)}
@@ -43,10 +44,14 @@ const SingleProductPage = (props) => {
                 max="10"
             ></input>
 
-            <p>Price: ${(singleReport.price * productAmount).toFixed(2)}</p>
-            <p>Rating: {singleReport.rating.rate}</p>
+            <p>
+                Price: ${(singleReport.price * singleReport.amount).toFixed(2)}
+            </p>
+            {/* <p>Rating: {singleReport.rating.rate}</p> */}
 
-            <button className="addToCartButton" /* onClick={addToCart} */>
+            <button
+                className="addToCartButtonSeparatePage" /* onClick={addToCart} */
+            >
                 Add to cart
             </button>
         </div>

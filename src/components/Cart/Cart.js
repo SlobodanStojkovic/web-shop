@@ -41,6 +41,7 @@ const Cart = ({
     const clearCart = () => {
         localStorage.removeItem("webShopSloba");
         setProductsInCart([]);
+        calculateTotal();
     };
 
     return showCart && productsInCart !== null ? (
