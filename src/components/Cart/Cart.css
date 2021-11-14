@@ -1,7 +1,7 @@
 .cartContainer {
     min-width: 80vw;
     min-height: 80vh;
-/*     width: 80vw;
+    /*     width: 80vw;
     height: 80vh; */
     margin: 0 auto;
     background-color: gray;
@@ -19,15 +19,14 @@
     vertical-align: top;
     /* For inline-block elements the default value of the vertical-align property is baseline. If we change the value to top, it will behave as expected and all singleProducts will be lined up */
     position: relative;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.35);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
     border-radius: 3%;
 }
 
-
-
 .singleCartProduct img {
     max-width: 80%;
-    margin: 5%;
+    height: 50%;
+    margin: 5% 0 0 0;
     vertical-align: middle;
     max-height: 50%;
     border-radius: 5%;
@@ -46,13 +45,19 @@
     margin: 1rem;
     padding: 1rem 2rem;
     border-radius: 5px;
-    background-color:  orange;
+    background-color: orange;
 }
 
 .calculateTotalInCartButton {
     margin: 1rem;
     padding: 1rem 2rem;
     border-radius: 5px;
-    background-color:  rgb(35, 211, 35);
+    background-color: rgb(35, 211, 35);
 }
 
+.deleteCartProduct {
+    border-radius: 5px;
+    background-color: orange;
+    position: relative;
+    bottom: 0.5rem;
+}

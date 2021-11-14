@@ -3,12 +3,24 @@ import shoppingCart from "./assets/shoppingCart.png";
 import { useState } from "react/cjs/react.development";
 import Cart from "../Cart/Cart";
 
-const Header = () => {
+const Header = ({ productsInCart, setProductsInCart }) => {
     const [showCart, setShowCart] = useState(false);
-    const [productsInCart, setProductsInCart] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    const calculateTotal = () => {
+        let total = 0;
+        productsInCart &&
+            productsInCart.forEach((element) => {
+                if (element.amount !== 0) {
+                    total += element.price * element.amount;
+                }
+            });
+        return setTotalPrice(total);
+    };
 
     const cartShowHandler = () => {
         setShowCart(() => !showCart);
+        calculateTotal();
     };
 
     return (
@@ -46,6 +58,8 @@ const Header = () => {
             </header>
             <Cart
                 showCart={showCart}
+                totalPrice={totalPrice}
+                calculateTotal={calculateTotal}
                 cartShowHandler={cartShowHandler}
                 productsInCart={productsInCart}
                 setProductsInCart={setProductsInCart}

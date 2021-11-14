@@ -4,11 +4,10 @@ import { useParams } from "react-router-dom";
 import "./SingleProductPage.css";
 
 const SingleProductPage = () => {
-    const [productAmount, setProductAmount] = useState("");
+    const [productAmount, setProductAmount] = useState(1);
     const [singleReport, setSingleReport] = useState([]);
 
     const id = useParams();
-    console.log(singleReport);
 
     useEffect(() => {
         fetchSingleProduct(id.id).then((productToShow) => {
@@ -17,12 +16,30 @@ const SingleProductPage = () => {
                 amount: 1,
             };
             setSingleReport(product);
+            console.log(product);
         });
     }, [id]);
 
-    useEffect(() => {
+    const addToCartSinglePage = (report) => {
+        let cartItemsForLocalStorage =
+            JSON.parse(localStorage.getItem("webShopSloba")) || [];
+
+        cartItemsForLocalStorage.push({
+            ...report,
+            amount: productAmount,
+        });
+
+        localStorage.setItem(
+            "webShopSloba",
+            JSON.stringify(cartItemsForLocalStorage)
+        );
+    };
+
+    /*   useEffect(() => {
         singleReport.amount = productAmount;
-    }, [productAmount]);
+    }, [singleReport, productAmount]); */
+
+    console.log(singleReport);
 
     return (
         <div className="singleProductPage">
@@ -47,10 +64,11 @@ const SingleProductPage = () => {
             <p>
                 Price: ${(singleReport.price * singleReport.amount).toFixed(2)}
             </p>
-            {/* <p>Rating: {singleReport.rating.rate}</p> */}
+            {<p>Rating: {singleReport.rating && singleReport.rating.rate}</p>}
 
             <button
-                className="addToCartButtonSeparatePage" /* onClick={addToCart} */
+                onClick={() => addToCartSinglePage(singleReport)}
+                className="addToCartButtonSeparatePage"
             >
                 Add to cart
             </button>

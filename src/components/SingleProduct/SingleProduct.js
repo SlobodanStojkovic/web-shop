@@ -1,28 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { addToCart } from "../../services/addToCart";
 import "./SingleProduct.css";
 
-const SingleProduct = ({ products, product, setAddedNotification }) => {
+const SingleProduct = ({ product, filteredProducts, setAddedNotification }) => {
     const [productAmount, setProductAmount] = useState(1);
 
-    const addToCart = () => {
-        let cartItemsForLocalStorage =
-            JSON.parse(localStorage.getItem("webShopSloba")) || [];
-
-        products.forEach((element) => {
-            if (element.id === product.id) {
-                cartItemsForLocalStorage.push({
-                    ...product,
-                    amount: productAmount,
-                });
-
-                localStorage.setItem(
-                    "webShopSloba",
-                    JSON.stringify(cartItemsForLocalStorage)
-                );
-            }
-        });
+    const addedNotificationTimer = () => {
         setAddedNotification(true);
+        setTimeout(() => {
+            setAddedNotification(false);
+        }, 5000);
     };
 
     return (
@@ -52,7 +40,13 @@ const SingleProduct = ({ products, product, setAddedNotification }) => {
                 <p>Price: ${(product.price * productAmount).toFixed(2)}</p>
                 <p>Rating: {product.rating.rate}</p>
 
-                <button className="addToCartButton" onClick={addToCart}>
+                <button
+                    className="addToCartButton"
+                    onClick={() => {
+                        addToCart(product, productAmount, filteredProducts);
+                        addedNotificationTimer();
+                    }}
+                >
                     Add to cart
                 </button>
             </div>

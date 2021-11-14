@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -6,9 +7,14 @@ import SingleProductPage from "./components/SingleProductPage/SingleProductPage"
 import "./App.css";
 
 function App() {
+    const [productsInCart, setProductsInCart] = useState([]);
+
     return (
         <div className="App">
-            <Header />
+            <Header
+                productsInCart={productsInCart}
+                setProductsInCart={setProductsInCart}
+            />
             <Routes>
                 <Route path="/home" element={<Main />} />
                 <Route

@@ -10,13 +10,6 @@ const Main = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [addedNotification, setAddedNotification] = useState(false);
 
-    useEffect(() => {
-        fetchProducts().then((products) => {
-            setProducts(products);
-            setFilteredProducts(products);
-        });
-    }, []);
-
     const addedNotificationTimer = () => {
         setAddedNotification(true);
         setTimeout(() => {
@@ -24,34 +17,12 @@ const Main = () => {
         }, 5000);
     };
 
-    /* 
     useEffect(() => {
-        let amountToUpdate = JSON.parse(localStorage.getItem("webShopSloba"));
-
-        let productAddingAmountProperty = products.map((product) => {
-            if (amountToUpdate !== null) {
-                amountToUpdate.forEach((element) => {
-                    
-                    if (element.productId === product.id) {
-                        return {
-                            ...product,
-                            amount: element.productAmount,
-                        };
-                    } else
-                        return {
-                            ...product,
-                            amount: 0,
-                        };
-                });
-            } else {
-                return {
-                    ...product,
-                    amount: 0,
-                };
-            }
+        fetchProducts().then((products) => {
+            setProducts(products);
+            setFilteredProducts(products);
         });
-        setProductsWithAmount(productAddingAmountProperty);
-    }, [products, ]); */
+    }, []);
 
     return (
         <>
@@ -70,10 +41,10 @@ const Main = () => {
                     filteredProducts.map((product) => {
                         return (
                             <SingleProduct
-                                products={products}
                                 product={product}
                                 key={product.id}
-                                setAddedNotification={addedNotificationTimer}
+                                filteredProducts={filteredProducts}
+                                setAddedNotification={setAddedNotification}
                             />
                         );
                     })
