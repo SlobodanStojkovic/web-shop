@@ -3,7 +3,7 @@ import fetchSingleProduct from "../../services/fetchSingleProduct";
 import { useParams } from "react-router-dom";
 import "./SingleProductPage.css";
 
-const SingleProductPage = () => {
+const SingleProductPage = ({ addedNotificationTimer }) => {
     const [productAmount, setProductAmount] = useState(1);
     const [singleReport, setSingleReport] = useState([]);
 
@@ -33,6 +33,8 @@ const SingleProductPage = () => {
             "webShopSloba",
             JSON.stringify(cartItemsForLocalStorage)
         );
+
+        addedNotificationTimer()
     };
 
     /*   useEffect(() => {

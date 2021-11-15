@@ -1,16 +1,26 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/addToCart";
-import "./Main.css";
+import fetchWomensClothing from "../../services/fetchWomensClothing";
+import "./WomensClothing.css";
 
-const Main = ({
+const WomensClothing = ({
     productAmount,
     setProductAmount,
-    filteredProducts,
     addedNotificationTimer,
 }) => {
+    const [womensClothing, setWomensClothing] = useState([]);
+
+    useEffect(() => {
+        fetchWomensClothing().then((products) => {
+            setWomensClothing(products);
+        });
+    }, []);
+    
+
     return (
         <div className="products">
-            {filteredProducts.map((product) => {
+            {womensClothing.map((product) => {
                 return (
                     <div className="singleProduct" key={product.id}>
                         <Link to={`/single-product/${product.id}`}>
@@ -42,11 +52,7 @@ const Main = ({
                         <button
                             className="addToCartButton"
                             onClick={() => {
-                                addToCart(
-                                    product,
-                                    productAmount,
-                                    filteredProducts
-                                );
+                                addToCart(product, productAmount, womensClothing);
                                 addedNotificationTimer();
                             }}
                         >
@@ -59,4 +65,4 @@ const Main = ({
     );
 };
 
-export default Main;
+export default WomensClothing;

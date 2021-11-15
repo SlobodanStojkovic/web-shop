@@ -1,16 +1,26 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/addToCart";
-import "./Main.css";
+import fetchJewelery from "../../services/fetchJewelery";
+import "./Jewelery.css";
 
-const Main = ({
+const Jewelery = ({
     productAmount,
     setProductAmount,
-    filteredProducts,
     addedNotificationTimer,
 }) => {
+    const [jewelery, setJewelery] = useState([]);
+
+    useEffect(() => {
+        fetchJewelery().then((products) => {
+            setJewelery(products);
+        });
+    }, []);
+    
+
     return (
         <div className="products">
-            {filteredProducts.map((product) => {
+            {jewelery.map((product) => {
                 return (
                     <div className="singleProduct" key={product.id}>
                         <Link to={`/single-product/${product.id}`}>
@@ -42,11 +52,7 @@ const Main = ({
                         <button
                             className="addToCartButton"
                             onClick={() => {
-                                addToCart(
-                                    product,
-                                    productAmount,
-                                    filteredProducts
-                                );
+                                addToCart(product, productAmount, jewelery);
                                 addedNotificationTimer();
                             }}
                         >
@@ -59,4 +65,4 @@ const Main = ({
     );
 };
 
-export default Main;
+export default Jewelery;
