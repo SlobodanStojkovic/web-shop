@@ -1,6 +1,6 @@
 import "./Header.css";
 import shoppingCart from "./assets/shoppingCart.png";
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import Cart from "../Cart/Cart";
 
 const Header = ({ productsInCart, setProductsInCart }) => {
