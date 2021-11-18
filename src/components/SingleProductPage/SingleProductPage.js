@@ -16,7 +16,6 @@ const SingleProductPage = ({ addedNotificationTimer, setProductsInCart }) => {
                 amount: 1,
             };
             setSingleReport(product);
-            console.log(product);
         });
     }, [id]);
 
@@ -39,12 +38,6 @@ const SingleProductPage = ({ addedNotificationTimer, setProductsInCart }) => {
         );
         addedNotificationTimer();
     };
-
-    /*   useEffect(() => {
-        singleReport.amount = productAmount;
-    }, [singleReport, productAmount]); */
-
-    console.log(singleReport);
 
     return (
         <div className="singleProductPage">
