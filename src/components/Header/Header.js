@@ -1,11 +1,17 @@
 import "./Header.css";
 import shoppingCart from "./assets/shoppingCart.png";
-import { useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react/cjs/react.development";
 import Cart from "../Cart/Cart";
 
 const Header = ({ productsInCart, setProductsInCart }) => {
     const [showCart, setShowCart] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+        setProductsInCart(() =>
+            JSON.parse(localStorage.getItem("webShopSloba"))
+        );
+    }, []);
 
     const calculateTotal = () => {
         let total = 0;

@@ -21,6 +21,12 @@ const Cart = ({
     };
 
     useEffect(() => {
+        setProductsInCart(() =>
+            JSON.parse(localStorage.getItem("webShopSloba"))
+        );
+    }, []);
+
+    useEffect(() => {
         if (showCart === true) {
             setProductsInCart(() =>
                 JSON.parse(localStorage.getItem("webShopSloba"))

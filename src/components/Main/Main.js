@@ -5,6 +5,7 @@ import "./Main.css";
 const Main = ({
     productAmount,
     setProductAmount,
+    setProductsInCart,
     filteredProducts,
     addedNotificationTimer,
 }) => {
@@ -46,6 +47,11 @@ const Main = ({
                                     product,
                                     productAmount,
                                     filteredProducts
+                                );
+                                setProductsInCart(() =>
+                                    JSON.parse(
+                                        localStorage.getItem("webShopSloba")
+                                    )
                                 );
                                 addedNotificationTimer();
                             }}

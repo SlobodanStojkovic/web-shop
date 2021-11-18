@@ -28,6 +28,10 @@ function App() {
     };
 
     useEffect(() => {
+        setProductsInCart(() =>
+            JSON.parse(localStorage.getItem("webShopSloba"))
+        );
+
         fetchProducts().then((products) => {
             setProducts(products);
             setFilteredProducts(products);
@@ -60,6 +64,7 @@ function App() {
                             addedNotificationTimer={addedNotificationTimer}
                             productAmount={productAmount}
                             setProductAmount={setProductAmount}
+                            setProductsInCart={setProductsInCart}
                         />
                     }
                 />
@@ -108,10 +113,11 @@ function App() {
                 />
 
                 <Route
-                    path="/single-product/:id"
+                    path="/:id"
                     element={
                         <SingleProductPage
                             addedNotificationTimer={addedNotificationTimer}
+                            setProductsInCart={setProductsInCart}
                         />
                     }
                 />
