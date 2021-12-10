@@ -32,7 +32,6 @@
     padding: 1rem;
     background-color: rgb(35, 211, 35);
     border-radius: 5%;
-    position: absolute;
     bottom: 3%;
     left: 45%;
     z-index: 998;
@@ -44,7 +43,7 @@
 }
 
 .itemDescription {
-    margin-top: 6rem;
+    margin-top: 7rem;
 }
 
 .singleProductInput {

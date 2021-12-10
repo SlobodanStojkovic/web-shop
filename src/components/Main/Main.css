@@ -34,8 +34,10 @@
 input {
   display: block;
   margin: 0 auto;
-  width: 15%;
+  width: 6rem;
   text-align: center;
+  margin-top: 0.5rem;
+  border-radius: 5px;
 }
 
 .addToCartButton {

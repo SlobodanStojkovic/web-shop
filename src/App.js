@@ -108,7 +108,7 @@ function App() {
         />
 
         <Route
-         path="/:id"
+          path="/single-product/:id"
           element={
             <SingleProductPage
               addedNotificationTimer={addedNotificationTimer}

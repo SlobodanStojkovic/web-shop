@@ -25,13 +25,13 @@ const Main = ({
 
               <p className="productTitle">{product.title}</p>
             </Link>
-            <input
+            {/*             <input
               type="number"
               defaultValue="1"
               onChange={(event) => setProductAmount(() => event.target.value)}
               min="0"
               max="10"
-            ></input>
+            ></input> */}
 
             <p>Price: ${(product.price * productAmount).toFixed(2)}</p>
             <p>Rating: {product.rating.rate}</p>

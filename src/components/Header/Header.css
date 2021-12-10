@@ -1,6 +1,5 @@
 header {
     background-color: rgb(35, 211, 35);
-    padding: 2rem;
 }
 
 .homeLink {
@@ -10,6 +9,7 @@ header {
     font-weight: bolder;
     font-size: 2rem;
     position: absolute;
+    top: 0.5rem;
     left: 3%;
 }
 
@@ -29,7 +29,7 @@ button > svg {
     padding: 0.5rem 3rem;
     position: absolute;
     right: 3%;
-    top: 2.5rem;;
+    top: 0.5rem;;
     background-color: orange;
 }
 
