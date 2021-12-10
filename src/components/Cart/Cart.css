@@ -1,63 +1,69 @@
 .cartContainer {
-    min-width: 80vw;
-    min-height: 80vh;
-    /*     width: 80vw;
-    height: 80vh; */
-    margin: 0 auto;
-    background-color: gray;
+  min-width: 80vw;
+  min-height: 80vh;
+  max-width: 95vw;
+  margin: 0 auto;
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+
+.productsInCart {
+  text-align: center;
 }
 
 .singleCartProduct {
-    height: 500px;
-    background-color: yellowgreen;
-    width: 25%;
-    border: 1px solid gainsboro;
-    margin: 2%;
-    display: inline-block;
-    text-align: center;
-    align-items: center;
-    vertical-align: top;
-    /* For inline-block elements the default value of the vertical-align property is baseline. If we change the value to top, it will behave as expected and all singleProducts will be lined up */
-    position: relative;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
-    border-radius: 3%;
+  height: 500px;
+  background-color: yellowgreen;
+  width: 25%;
+  border: 1px solid gainsboro;
+  margin: 2%;
+  display: inline-block;
+  text-align: center;
+  align-items: center;
+  vertical-align: top;
+  /* For inline-block elements the default value of the vertical-align property is baseline. If we change the value to top, it will behave as expected and all singleProducts will be lined up */
+  position: relative;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
+  border-radius: 3%;
 }
 
 .singleCartProduct img {
-    max-width: 80%;
-    height: 50%;
-    margin: 5% 0 0 0;
-    vertical-align: middle;
-    max-height: 50%;
-    border-radius: 5%;
+  max-width: 80%;
+  height: 50%;
+  margin: 5% 0 0 0;
+  vertical-align: middle;
+  max-height: 50%;
+  border-radius: 5%;
 }
 
 .singleCartProduct input {
-    text-align: center;
+  text-align: center;
 }
 
 .closeCartButton {
-    float: right;
-    margin: 0.3rem;
+  float: right;
+  margin: 0.3rem;
+  background-color: orange;
+  border-radius: 5px;
 }
 
 .clearCartButton {
-    margin: 1rem;
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    background-color: orange;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  background-color: orange;
 }
 
 .calculateTotalInCartButton {
-    margin: 1rem;
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    background-color: rgb(35, 211, 35);
+  margin: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  background-color: rgb(35, 211, 35);
 }
 
 .deleteCartProduct {
-    border-radius: 5px;
-    background-color: orange;
-    position: relative;
-    bottom: 0.5rem;
+  border-radius: 5px;
+  background-color: orange;
+  position: relative;
+  bottom: 0.5rem;
 }

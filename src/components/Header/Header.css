@@ -15,14 +15,22 @@ header {
 
 .shoppingCartImage {
     width: 20px;
+    background-color: orange;
 }
 
-.shoppingCardButton {
-    border-radius: 5%;
-    padding: 1rem 1.5rem;
+button > svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    margin-right: 0.5rem;
+}
+
+.shoppingCartButton {
+    border-radius: 5px;
+    padding: 0.5rem 3rem;
     position: absolute;
     right: 3%;
-    top: 1.5rem;
+    top: 2.5rem;;
+    background-color: orange;
 }
 
 ul {

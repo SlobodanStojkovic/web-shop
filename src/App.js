@@ -14,118 +14,113 @@ import WomensClothing from "./components/WomensClothing/WomensClothing";
 import "./App.css";
 
 function App() {
-    const [productsInCart, setProductsInCart] = useState([]);
-    const [products, setProducts] = useState([]);
-    const [filteredProducts, setFilteredProducts] = useState([]);
-    const [addedNotification, setAddedNotification] = useState(false);
-    const [productAmount, setProductAmount] = useState(1);
+  const [productsInCart, setProductsInCart] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [addedNotification, setAddedNotification] = useState(false);
+  const [productAmount, setProductAmount] = useState(1);
 
-    const addedNotificationTimer = () => {
-        setAddedNotification(true);
-        setTimeout(() => {
-            setAddedNotification(false);
-        }, 5000);
-    };
+  const addedNotificationTimer = () => {
+    setAddedNotification(true);
+    setTimeout(() => {
+      setAddedNotification(false);
+    }, 5000);
+  };
 
-    useEffect(() => {
-        setProductsInCart(() =>
-            JSON.parse(localStorage.getItem("webShopSloba"))
-        );
+  useEffect(() => {
+    setProductsInCart(() => JSON.parse(localStorage.getItem("webShopSloba")));
 
-        fetchProducts().then((products) => {
-            setProducts(products);
-            setFilteredProducts(products);
-        });
-    }, []);
+    fetchProducts().then((products) => {
+      setProducts(products);
+      setFilteredProducts(products);
+    });
+  }, []);
 
-    return (
-        <div className="App">
-            <Header
-                productsInCart={productsInCart}
-                setProductsInCart={setProductsInCart}
+  return (
+    <div className="App">
+      <Header
+        productsInCart={productsInCart}
+        setProductsInCart={setProductsInCart}
+      />
+
+      <Search products={products} setFilteredProducts={setFilteredProducts} />
+
+      <ProductAddedToCartNotification
+        addedNotification={addedNotification}
+        setAddedNotification={setAddedNotification}
+      />
+
+      <Routes>
+        <Route
+          path="/home"
+          element={
+            <Main
+              filteredProducts={filteredProducts}
+              addedNotificationTimer={addedNotificationTimer}
+              productAmount={productAmount}
+              setProductAmount={setProductAmount}
+              setProductsInCart={setProductsInCart}
             />
-
-            <Search
-                products={products}
-                setFilteredProducts={setFilteredProducts}
+          }
+        />
+        <Route
+          path="/electronics"
+          element={
+            <Electronics
+              addedNotificationTimer={addedNotificationTimer}
+              productAmount={productAmount}
+              setProductAmount={setProductAmount}
             />
+          }
+        />
 
-            <ProductAddedToCartNotification
-                addedNotification={addedNotification}
-                setAddedNotification={setAddedNotification}
+        <Route
+          path="/jewelery"
+          element={
+            <Jewelery
+              addedNotificationTimer={addedNotificationTimer}
+              productAmount={productAmount}
+              setProductAmount={setProductAmount}
             />
+          }
+        />
 
-            <Routes>
-                <Route
-                    path="/home"
-                    element={
-                        <Main
-                            filteredProducts={filteredProducts}
-                            addedNotificationTimer={addedNotificationTimer}
-                            productAmount={productAmount}
-                            setProductAmount={setProductAmount}
-                            setProductsInCart={setProductsInCart}
-                        />
-                    }
-                />
-                <Route
-                    path="/electronics"
-                    element={
-                        <Electronics
-                            addedNotificationTimer={addedNotificationTimer}
-                            productAmount={productAmount}
-                            setProductAmount={setProductAmount}
-                        />
-                    }
-                />
+        <Route
+          path="/mens-clothing"
+          element={
+            <MensClothing
+              addedNotificationTimer={addedNotificationTimer}
+              productAmount={productAmount}
+              setProductAmount={setProductAmount}
+            />
+          }
+        />
 
-                <Route
-                    path="/jewelery"
-                    element={
-                        <Jewelery
-                            addedNotificationTimer={addedNotificationTimer}
-                            productAmount={productAmount}
-                            setProductAmount={setProductAmount}
-                        />
-                    }
-                />
+        <Route
+          path="/womens-clothing"
+          element={
+            <WomensClothing
+              addedNotificationTimer={addedNotificationTimer}
+              productAmount={productAmount}
+              setProductAmount={setProductAmount}
+            />
+          }
+        />
 
-                <Route
-                    path="/mens-clothing"
-                    element={
-                        <MensClothing
-                            addedNotificationTimer={addedNotificationTimer}
-                            productAmount={productAmount}
-                            setProductAmount={setProductAmount}
-                        />
-                    }
-                />
-
-                <Route
-                    path="/womens-clothing"
-                    element={
-                        <WomensClothing
-                            addedNotificationTimer={addedNotificationTimer}
-                            productAmount={productAmount}
-                            setProductAmount={setProductAmount}
-                        />
-                    }
-                />
-
-                <Route
-                    path="/:id"
-                    element={
-                        <SingleProductPage
-                            addedNotificationTimer={addedNotificationTimer}
-                            setProductsInCart={setProductsInCart}
-                        />
-                    }
-                />
-                <Route path="/" element={<Navigate to="home" />} />
-            </Routes>
-            <Footer />
-        </div>
-    );
+        <Route
+         path="/:id"
+          element={
+            <SingleProductPage
+              addedNotificationTimer={addedNotificationTimer}
+              setProductsInCart={setProductsInCart}
+            />
+          }
+        />
+        <Route path="/" element={<Navigate to="home" />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

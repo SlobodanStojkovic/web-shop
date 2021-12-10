@@ -1,57 +1,56 @@
 .productTitle {
-    width: 90%;
-    margin: 5% auto;
-    margin-top: 10%;
+  width: 90%;
+  margin: 5% auto;
+  margin-top: 10%;
 }
 
 .imageDiv {
-    height: 40%;
-    width: 100%;
+  height: 40%;
+  width: 100%;
 }
 
 .productImg {
-    max-width: 80%;
-    margin: 5%;
-    vertical-align: middle;
-    max-height: 100%;
+  max-width: 80%;
+  margin: 5%;
+  vertical-align: middle;
+  max-height: 100%;
 }
 
 .singleProduct {
-    height: 450px;
-    width: 25%;
-    border: 1px solid gainsboro;
-    margin: 2%;
-    display: inline-block;
-    text-align: center;
-    align-items: center;
-    vertical-align: top;
-    /* For inline-block elements the default value of the vertical-align property is baseline. If we change the value to top, it will behave as expected and all singleProducts will be lined up */
-    position: relative;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
-    border-radius: 3%;
+  height: 450px;
+  width: 25%;
+  border: 1px solid gainsboro;
+  margin: 2%;
+  display: inline-block;
+  text-align: center;
+  align-items: center;
+  vertical-align: top;
+  /* For inline-block elements the default value of the vertical-align property is baseline. If we change the value to top, it will behave as expected and all singleProducts will be lined up */
+  position: relative;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
+  border-radius: 3%;
 }
 
 input {
-    display: block;
-    margin: 0 auto;
-    width: 15%;
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  text-align: center;
 }
 
 .addToCartButton {
-    padding: 3%;
-    background-color: rgb(35, 211, 35);
-    border-radius: 5%;
-    position: absolute;
-    bottom: 3%;
-    left: 36%;
-    z-index: 998;
+  padding: 3%;
+  background-color: rgb(35, 211, 35);
+  border-radius: 5%;
+  left: 39%;
+  z-index: 998;
 }
 
 .addToCartButton:active {
-    padding: 0.5rem;
-    background-color: aqua;
+  padding: 0.5rem;
+  background-color: aqua;
 }
 
 p {
-    margin: 0.2rem;
+  margin: 0.2rem;
 }

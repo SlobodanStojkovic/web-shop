@@ -10,12 +10,11 @@ const Cart = ({
   calculateTotal,
 }) => {
   const deleteCartProduct = (id) => {
-    productsInCart.forEach((product) => {
-      if (id === product.id) {
-        productsInCart.pop(product);
-      }
+    let delProd = productsInCart.filter((element) => {
+      return element.id !== id;
     });
-    localStorage.setItem("webShopSloba", JSON.stringify(productsInCart));
+    setProductsInCart(delProd);
+    localStorage.setItem("webShopSloba", JSON.stringify(delProd));
     calculateTotal();
   };
 

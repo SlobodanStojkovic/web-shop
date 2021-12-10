@@ -1,7 +1,7 @@
 import "./Header.css";
-import shoppingCart from "./assets/shoppingCart.png";
 import { useEffect, useState } from "react";
 import Cart from "../Cart/Cart";
+import { CartIcon } from "./CartIcon";
 
 const Header = ({ productsInCart, setProductsInCart }) => {
     const [showCart, setShowCart] = useState(false);
@@ -51,14 +51,10 @@ const Header = ({ productsInCart, setProductsInCart }) => {
                 </ul>
 
                 <button
-                    className="shoppingCardButton"
+                    className="shoppingCartButton"
                     onClick={cartShowHandler}
                 >
-                    <img
-                        className="shoppingCartImage"
-                        alt="shopping"
-                        src={shoppingCart}
-                    ></img>
+                    <CartIcon/>
                     {productsInCart !== null ? productsInCart.length : 0}
                 </button>
             </header>
