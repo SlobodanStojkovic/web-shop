@@ -12,11 +12,6 @@ export const addToCart = (product, productAmount) => {
       amount: productAmount,
     });
   }
-  /* 
-  cartItemsForLocalStorage.push({
-    ...product,
-    amount: productAmount,
-  }); */
 
   localStorage.setItem(
     "webShopSloba",
