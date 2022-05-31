@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/addToCart";
-import fetchElectronics from "../../services/fetchElectronics";
 import "./Electronics.css";
 
-const Electronics = ({
-  productAmount,
-  setProductAmount,
-  addedNotificationTimer,
-}) => {
+const Electronics = ({ addedNotificationTimer }) => {
   const [electronics, setElectronics] = useState([]);
+  const productsFromRedux = useSelector((state) => state.productsReducer);
 
   useEffect(() => {
-    fetchElectronics().then((products) => {
-      setElectronics(products);
+    const productsArray = [];
+    productsFromRedux.forEach((element) => {
+      if (element.category === "electronics") {
+        productsArray.push(element);
+      }
     });
-  }, []);
+    setElectronics(productsArray);
+  }, [productsFromRedux]);
 
   return (
     <div className="products">
@@ -36,18 +37,18 @@ const Electronics = ({
             <input
               type="number"
               defaultValue="1"
-              onChange={(event) => setProductAmount(() => event.target.value)}
+              onChange={(event) => (product.amount = () => event.target.value)}
               min="0"
               max="10"
             ></input>
 
-            <p>Price: ${(product.price * productAmount).toFixed(2)}</p>
+            <p>Price: ${(product.price * product.ammount).toFixed(2)}</p>
             <p>Rating: {product.rating.rate}</p>
 
             <button
               className="addToCartButton"
               onClick={() => {
-                addToCart(product, productAmount, electronics);
+                addToCart(product, product.ammount, electronics);
                 addedNotificationTimer();
               }}
             >

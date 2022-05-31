@@ -5,13 +5,15 @@ const productsSlice = createSlice({
   initialState: [],
   reducers: {
     addCategory(state, action) {
+      console.log("STATE", state);
+      console.log("ACTION", action);
       const items = [];
-      for (const item in action.payload) {
+      action.action.forEach(function (item) {
+        console.log("ITEM", item);
         items.push({ ...item, ammount: 1 });
-      }
-      state.push({
-        items,
       });
+      state = items;
+      return [...state];
     },
   },
 });

@@ -3,8 +3,6 @@ import { addToCart } from "../../services/addToCart";
 import "./Main.css";
 
 const Main = ({
-  productAmount,
-  setProductAmount,
   setProductsInCart,
   filteredProducts,
   addedNotificationTimer,
@@ -26,13 +24,13 @@ const Main = ({
               <p className="productTitle">{product.title}</p>
             </Link>
 
-            <p>Price: ${(product.price * productAmount).toFixed(2)}</p>
+            <p>Price: ${(product.price * product.amount).toFixed(2)}</p>
             <p>Rating: {product.rating.rate}</p>
 
             <button
               className="addToCartButton"
               onClick={() => {
-                addToCart(product, productAmount);
+                addToCart(product, product.amount);
                 setProductsInCart(() =>
                   JSON.parse(localStorage.getItem("webShopSloba"))
                 );
