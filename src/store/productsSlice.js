@@ -10,7 +10,7 @@ const productsSlice = createSlice({
       const items = [];
       action.action.forEach(function (item) {
         console.log("ITEM", item);
-        items.push({ ...item, ammount: 1 });
+        items.push({ ...item, amount: 1 });
       });
       state = items;
       return [...state];

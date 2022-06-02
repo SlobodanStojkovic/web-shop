@@ -42,13 +42,13 @@ const Electronics = ({ addedNotificationTimer }) => {
               max="10"
             ></input>
 
-            <p>Price: ${(product.price * product.ammount).toFixed(2)}</p>
+            <p>Price: ${(product.price * product.amount).toFixed(2)}</p>
             <p>Rating: {product.rating.rate}</p>
 
             <button
               className="addToCartButton"
               onClick={() => {
-                addToCart(product, product.ammount, electronics);
+                addToCart(product, product.amount, electronics);
                 addedNotificationTimer();
               }}
             >
