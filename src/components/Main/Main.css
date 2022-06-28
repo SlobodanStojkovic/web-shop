@@ -41,15 +41,16 @@ input {
 }
 
 .addToCartButton {
-  padding: 3%;
+  padding: 10px 40px;
   background-color: rgb(35, 211, 35);
-  border-radius: 5%;
+  border-radius: 5px;
+  border: none;
   left: 39%;
   z-index: 998;
 }
 
 .addToCartButton:active {
-  padding: 0.5rem;
+  padding: 10px 30px;
   background-color: aqua;
 }
 

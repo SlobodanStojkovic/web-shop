@@ -11,14 +11,16 @@ import ProductAddedToCartNotification from "./components/ProductAddedToCartNotif
 import Jewelery from "./components/Jewelery/Jewelery";
 import MensClothing from "./components/MensClothing/MensClothing";
 import WomensClothing from "./components/WomensClothing/WomensClothing";
+import { useDispatch } from "react-redux/es/exports";
 import "./App.css";
+import { addCategory } from "./store/productsSlice";
 
 function App() {
   const [productsInCart, setProductsInCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [addedNotification, setAddedNotification] = useState(false);
-  const [productAmount, setProductAmount] = useState(1);
+  const dispatch = useDispatch();
 
   const addedNotificationTimer = () => {
     setAddedNotification(true);
@@ -33,8 +35,9 @@ function App() {
     fetchProducts().then((products) => {
       setProducts(products);
       setFilteredProducts(products);
+      dispatch({ type: addCategory, action: products });
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -57,8 +60,6 @@ function App() {
             <Main
               filteredProducts={filteredProducts}
               addedNotificationTimer={addedNotificationTimer}
-              productAmount={productAmount}
-              setProductAmount={setProductAmount}
               setProductsInCart={setProductsInCart}
             />
           }
@@ -66,44 +67,26 @@ function App() {
         <Route
           path="/electronics"
           element={
-            <Electronics
-              addedNotificationTimer={addedNotificationTimer}
-              productAmount={productAmount}
-              setProductAmount={setProductAmount}
-            />
+            <Electronics addedNotificationTimer={addedNotificationTimer} />
           }
         />
 
         <Route
           path="/jewelery"
-          element={
-            <Jewelery
-              addedNotificationTimer={addedNotificationTimer}
-              productAmount={productAmount}
-              setProductAmount={setProductAmount}
-            />
-          }
+          element={<Jewelery addedNotificationTimer={addedNotificationTimer} />}
         />
 
         <Route
           path="/mens-clothing"
           element={
-            <MensClothing
-              addedNotificationTimer={addedNotificationTimer}
-              productAmount={productAmount}
-              setProductAmount={setProductAmount}
-            />
+            <MensClothing addedNotificationTimer={addedNotificationTimer} />
           }
         />
 
         <Route
           path="/womens-clothing"
           element={
-            <WomensClothing
-              addedNotificationTimer={addedNotificationTimer}
-              productAmount={productAmount}
-              setProductAmount={setProductAmount}
-            />
+            <WomensClothing addedNotificationTimer={addedNotificationTimer} />
           }
         />
 
