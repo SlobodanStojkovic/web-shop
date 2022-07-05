@@ -99,7 +99,7 @@ function App() {
             />
           }
         />
-        <Route path="/" element={<Navigate to="home" />} />
+        <Route path="*" element={<Navigate to="/home" replace />}></Route>
       </Routes>
       <Footer />
     </div>
