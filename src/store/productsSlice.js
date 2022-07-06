@@ -4,12 +4,9 @@ const productsSlice = createSlice({
   name: "products",
   initialState: [],
   reducers: {
-    addCategory(state, action) {
-      console.log("STATE", state);
-      console.log("ACTION", action);
+    addProducts(state, action) {
       const items = [];
       action.action.forEach(function (item) {
-        console.log("ITEM", item);
         items.push({ ...item, amount: 1 });
       });
       state = items;
@@ -18,5 +15,5 @@ const productsSlice = createSlice({
   },
 });
 
-export const { addCategory } = productsSlice.actions;
+export const { addProducts } = productsSlice.actions;
 export default productsSlice.reducer;

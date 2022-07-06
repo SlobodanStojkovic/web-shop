@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/addToCart";
-import { useSelector } from "react-redux/es/exports";
 import "./WomensClothing.css";
 
-const WomensClothing = ({ addedNotificationTimer }) => {
+const WomensClothing = ({ addedNotificationTimer, productsToShow }) => {
   const [womensClothing, setWomensClothing] = useState([]);
-  const productsFromRedux = useSelector((state) => state.productsReducer);
 
   useEffect(() => {
     const productsArray = [];
-    productsFromRedux.forEach((element) => {
+    productsToShow.forEach((element) => {
       if (element.category === "women's clothing") {
         productsArray.push(element);
       }
     });
     setWomensClothing(productsArray);
-  }, [productsFromRedux]);
+  }, [productsToShow]);
 
   return (
     <div className="products">
@@ -37,7 +35,7 @@ const WomensClothing = ({ addedNotificationTimer }) => {
             <input
               type="number"
               defaultValue="1"
-              onChange={(event) => product.amount = (() => event.target.value)}
+              onChange={(event) => (product.amount = () => event.target.value)}
               min="1"
               max="10"
             ></input>

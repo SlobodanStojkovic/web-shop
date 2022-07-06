@@ -13,12 +13,12 @@ import MensClothing from "./components/MensClothing/MensClothing";
 import WomensClothing from "./components/WomensClothing/WomensClothing";
 import { useDispatch } from "react-redux/es/exports";
 import "./App.css";
-import { addCategory } from "./store/productsSlice";
+import { addProducts } from "./store/productsSlice";
 
 function App() {
   const [productsInCart, setProductsInCart] = useState([]);
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [productsToShow, setProductsToShow] = useState([]);
   const [addedNotification, setAddedNotification] = useState(false);
   const dispatch = useDispatch();
 
@@ -34,8 +34,7 @@ function App() {
 
     fetchProducts().then((products) => {
       setProducts(products);
-      setFilteredProducts(products);
-      dispatch({ type: addCategory, action: products });
+      dispatch({ type: addProducts, action: products });
     });
   }, [dispatch]);
 
@@ -46,7 +45,11 @@ function App() {
         setProductsInCart={setProductsInCart}
       />
 
-      <Search products={products} setFilteredProducts={setFilteredProducts} />
+      <Search
+        products={products}
+        productsToShow={productsToShow}
+        setProductsToShow={setProductsToShow}
+      />
 
       <ProductAddedToCartNotification
         addedNotification={addedNotification}
@@ -58,7 +61,7 @@ function App() {
           path="/home"
           element={
             <Main
-              filteredProducts={filteredProducts}
+              productsToShow={productsToShow}
               addedNotificationTimer={addedNotificationTimer}
               setProductsInCart={setProductsInCart}
             />
@@ -67,26 +70,40 @@ function App() {
         <Route
           path="/electronics"
           element={
-            <Electronics addedNotificationTimer={addedNotificationTimer} />
+            <Electronics
+              productsToShow={productsToShow}
+              addedNotificationTimer={addedNotificationTimer}
+            />
           }
         />
 
         <Route
           path="/jewelery"
-          element={<Jewelery addedNotificationTimer={addedNotificationTimer} />}
+          element={
+            <Jewelery
+              productsToShow={productsToShow}
+              addedNotificationTimer={addedNotificationTimer}
+            />
+          }
         />
 
         <Route
           path="/mens-clothing"
           element={
-            <MensClothing addedNotificationTimer={addedNotificationTimer} />
+            <MensClothing
+              productsToShow={productsToShow}
+              addedNotificationTimer={addedNotificationTimer}
+            />
           }
         />
 
         <Route
           path="/womens-clothing"
           element={
-            <WomensClothing addedNotificationTimer={addedNotificationTimer} />
+            <WomensClothing
+              productsToShow={productsToShow}
+              addedNotificationTimer={addedNotificationTimer}
+            />
           }
         />
 
@@ -99,7 +116,7 @@ function App() {
             />
           }
         />
-        <Route path="/" element={<Navigate to="home" />} />
+        <Route path="*" element={<Navigate to="/home" replace />}></Route>
       </Routes>
       <Footer />
     </div>

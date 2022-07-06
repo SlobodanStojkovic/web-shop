@@ -4,12 +4,12 @@ import "./Main.css";
 
 const Main = ({
   setProductsInCart,
-  filteredProducts,
   addedNotificationTimer,
+  productsToShow,
 }) => {
   return (
     <div className="products">
-      {filteredProducts.map((product) => {
+      {productsToShow.map((product) => {
         return (
           <div className="singleProduct" key={product.id}>
             <Link to={`/single-product/${product.id}`}>
