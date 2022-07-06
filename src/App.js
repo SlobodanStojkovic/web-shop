@@ -13,7 +13,7 @@ import MensClothing from "./components/MensClothing/MensClothing";
 import WomensClothing from "./components/WomensClothing/WomensClothing";
 import { useDispatch } from "react-redux/es/exports";
 import "./App.css";
-import { addCategory } from "./store/productsSlice";
+import { addProducts } from "./store/productsSlice";
 
 function App() {
   const [productsInCart, setProductsInCart] = useState([]);
@@ -34,7 +34,7 @@ function App() {
 
     fetchProducts().then((products) => {
       setProducts(products);
-      dispatch({ type: addCategory, action: products });
+      dispatch({ type: addProducts, action: products });
     });
   }, [dispatch]);
 
