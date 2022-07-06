@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/addToCart";
 import "./Electronics.css";
 
-const Electronics = ({ addedNotificationTimer }) => {
+const Electronics = ({ addedNotificationTimer, productsToShow }) => {
   const [electronics, setElectronics] = useState([]);
-  const productsFromRedux = useSelector((state) => state.productsReducer);
 
   useEffect(() => {
     const productsArray = [];
-    productsFromRedux.forEach((element) => {
+    productsToShow.forEach((element) => {
       if (element.category === "electronics") {
         productsArray.push(element);
       }
     });
     setElectronics(productsArray);
-  }, [productsFromRedux]);
+  }, [productsToShow]);
 
   return (
     <div className="products">

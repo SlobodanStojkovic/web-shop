@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/addToCart";
 import "./MensClothing.css";
 
-const MensClothing = ({ addedNotificationTimer }) => {
+const MensClothing = ({ addedNotificationTimer, productsToShow }) => {
   const [mensClothing, setMensClothing] = useState([]);
-  const productsFromRedux = useSelector((state) => state.productsReducer);
 
   useEffect(() => {
     const productsArray = [];
-    productsFromRedux.forEach((element) => {
+    productsToShow.forEach((element) => {
       if (element.category === "men's clothing") {
         productsArray.push(element);
       }
     });
     setMensClothing(productsArray);
-  }, [productsFromRedux]);
+  }, [productsToShow]);
 
   return (
     <div className="products">

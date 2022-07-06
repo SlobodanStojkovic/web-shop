@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/addToCart";
-import { useSelector } from "react-redux/es/exports";
 import "./Jewelery.css";
 
-const Jewelery = ({ addedNotificationTimer }) => {
+const Jewelery = ({ addedNotificationTimer, productsToShow }) => {
   const [jewelery, setJewelery] = useState([]);
-  const productsFromRedux = useSelector((state) => state.productsReducer);
 
   useEffect(() => {
     const productsArray = [];
-    productsFromRedux.forEach((element) => {
+    productsToShow.forEach((element) => {
       if (element.category === "jewelery") {
         productsArray.push(element);
       }
     });
     setJewelery(productsArray);
-  }, [productsFromRedux]);
+  }, [productsToShow]);
 
   return (
     <div className="products">
