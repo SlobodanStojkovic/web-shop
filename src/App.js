@@ -12,8 +12,8 @@ import Jewelery from "./components/Jewelery/Jewelery";
 import MensClothing from "./components/MensClothing/MensClothing";
 import WomensClothing from "./components/WomensClothing/WomensClothing";
 import { useDispatch } from "react-redux/es/exports";
-import "./App.css";
 import { addProducts } from "./store/productsSlice";
+import "./App.css";
 
 function App() {
   const [productsInCart, setProductsInCart] = useState([]);
