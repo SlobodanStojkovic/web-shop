@@ -41,52 +41,57 @@ const Cart = ({
   return (
     showCart &&
     productsInCart !== null && (
-      <div className="cartContainer">
-        <button className="closeCartButton" onClick={cartShowHandler}>
-          X
-        </button>
-        <h1>My cart</h1>
+      <div className="overlay">
+        <div className="cartContainer">
+          <button className="closeCartButton" onClick={cartShowHandler}>
+            X
+          </button>
+          <h1>My cart</h1>
 
-        <div className="productsInCart">
-          {productsInCart &&
-            productsInCart.map((product, index) => {
-              return (
-                <div
-                  className="singleCartProduct"
-                  key={product.id + 100 * index}
-                >
-                  <img src={product.image} alt="product"></img>
-                  <p className="productTitle">{product.title}</p>
-                  <input
-                    type="number"
-                    defaultValue={product.amount}
-                    onChange={(event) => {
-                      product.amount = event.target.value;
-                      calculateTotal();
-                    }}
-                    min="0"
-                    max="10"
-                  ></input>
-
-                  <p>Price: ${(product.price * product.amount).toFixed(2)}</p>
-                  <p>Rating: {product.rating.rate}</p>
-                  <button
-                    className="deleteCartProduct"
-                    onClick={() => deleteCartProduct(product.id)}
+          <div className="productsInCart">
+            {productsInCart &&
+              productsInCart.map((product, index) => {
+                return (
+                  <div
+                    className="singleCartProduct"
+                    key={product.id + 100 * index}
                   >
-                    Delete
-                  </button>
-                </div>
-              );
-            })}
+                    <img src={product.image} alt="product"></img>
+                    <p className="productTitle">{product.title}</p>
+                    <input
+                      type="number"
+                      defaultValue={product.amount}
+                      onChange={(event) => {
+                        product.amount = event.target.value;
+                        calculateTotal();
+                      }}
+                      min="0"
+                      max="10"
+                    ></input>
+
+                    <p>Price: ${(product.price * product.amount).toFixed(2)}</p>
+                    <p>Rating: {product.rating.rate}</p>
+                    <button
+                      className="deleteCartProduct"
+                      onClick={() => deleteCartProduct(product.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                );
+              })}
+          </div>
+          <h2>Total: ${totalPrice.toFixed(2)} </h2>
+          <button
+            onClick={calculateTotal}
+            className="calculateTotalInCartButton"
+          >
+            Calculate
+          </button>
+          <button className="clearCartButton" onClick={clearCart}>
+            Clear Cart
+          </button>
         </div>
-        <h2>Total: ${totalPrice.toFixed(2)} </h2>
-        <button onClick={calculateTotal} className="calculateTotalInCartButton">
-          Calculate
-        </button>
-        <button className="clearCartButton" onClick={clearCart}>
-          Clear Cart
-        </button>
       </div>
     )
   );
