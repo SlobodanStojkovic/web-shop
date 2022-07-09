@@ -27,6 +27,13 @@ const Header = ({ productsInCart, setProductsInCart }) => {
     calculateTotal();
   };
 
+  //to prevent background scroll when modal is open
+  useEffect(() => {
+    if (showCart) {
+      document.body.style.overflow = "hidden";
+    } else document.body.style.overflow = "unset";
+  }, [showCart]);
+
   return (
     <>
       <header>
