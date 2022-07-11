@@ -20,6 +20,7 @@ const Electronics = ({ addedNotificationTimer, productsToShow }) => {
       {electronics.map((product) => {
         return (
           <ProductItem
+            key={product.id}
             product={product}
             addedNotificationTimer={addedNotificationTimer}
           />

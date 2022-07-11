@@ -20,6 +20,7 @@ const WomensClothing = ({ addedNotificationTimer, productsToShow }) => {
       {womensClothing.map((product) => {
         return (
           <ProductItem
+            key={product.id}
             product={product}
             addedNotificationTimer={addedNotificationTimer}
           />

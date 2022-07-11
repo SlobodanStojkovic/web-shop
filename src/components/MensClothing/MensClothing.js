@@ -21,6 +21,7 @@ const MensClothing = ({ addedNotificationTimer, productsToShow }) => {
       {mensClothing.map((product) => {
         return (
           <ProductItem
+            key={product.id}
             product={product}
             addedNotificationTimer={addedNotificationTimer}
           />
