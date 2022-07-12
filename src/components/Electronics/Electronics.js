@@ -1,23 +1,13 @@
-import { useEffect, useState } from "react";
+import { getCategoryProducts } from "../../services/getCategoryProducts";
 import ProductItem from "../ProductItem/ProductItem";
 import "./Electronics.css";
 
 const Electronics = ({ addedNotificationTimer, productsToShow }) => {
-  const [electronics, setElectronics] = useState([]);
-
-  useEffect(() => {
-    const productsArray = [];
-    productsToShow.forEach((element) => {
-      if (element.category === "electronics") {
-        productsArray.push(element);
-      }
-    });
-    setElectronics(productsArray);
-  }, [productsToShow]);
+  const products = getCategoryProducts(productsToShow, "electronics");
 
   return (
     <div className="products">
-      {electronics.map((product) => {
+      {products.map((product) => {
         return (
           <ProductItem
             key={product.id}
