@@ -69,7 +69,7 @@ const Cart = ({
                       max="10"
                     ></input>
 
-                    <p>Price: ${(product.price * product.amount).toFixed(2)}</p>
+                    <p>Price: ${product.price.toFixed(2)}</p>
                     <p>Rating: {product.rating.rate}</p>
                     <button
                       className="deleteCartProduct"
