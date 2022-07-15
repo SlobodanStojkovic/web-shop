@@ -6,10 +6,22 @@ import "./Header.css";
 const Header = ({ productsInCart, setProductsInCart }) => {
   const [showCart, setShowCart] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalNumberOfProductsInCart, setTotalNumberOfProductsInCart] =
+    useState(0);
 
   useEffect(() => {
     setProductsInCart(() => JSON.parse(localStorage.getItem("webShopSloba")));
   }, []);
+
+  useEffect(() => {
+    let total = 0;
+    if (productsInCart) {
+      productsInCart.forEach((product) => {
+        total += product.amount;
+      });
+    }
+    setTotalNumberOfProductsInCart(total);
+  }, [productsInCart]);
 
   const calculateTotal = () => {
     let total = 0;
@@ -57,7 +69,11 @@ const Header = ({ productsInCart, setProductsInCart }) => {
 
         <button className="shoppingCartButton" onClick={cartShowHandler}>
           <CartIcon />
-          {productsInCart !== null ? productsInCart.length : 0}
+          {
+            totalNumberOfProductsInCart
+              ? totalNumberOfProductsInCart
+              : 0 /* productsInCart !== null ? productsInCart.length : 0 */
+          }
         </button>
       </header>
       <Cart
