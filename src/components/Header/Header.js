@@ -69,11 +69,7 @@ const Header = ({ productsInCart, setProductsInCart }) => {
 
         <button className="shoppingCartButton" onClick={cartShowHandler}>
           <CartIcon />
-          {
-            totalNumberOfProductsInCart
-              ? totalNumberOfProductsInCart
-              : 0 /* productsInCart !== null ? productsInCart.length : 0 */
-          }
+          {totalNumberOfProductsInCart ? totalNumberOfProductsInCart : 0}
         </button>
       </header>
       <Cart
